@@ -119,12 +119,12 @@ JWT_SECRET=<tu_valor_aleatorio_para_JWT>
 
 ### Configuración de la base de datos
 
-1. Asegurarse de tener PostgreSQL corriendo.
-2. Crea la base de datos y el usuario (o ajústalo a tu configuración):
+1. Asegúrate de tener PostgreSQL corriendo.
+2. Crea el rol y la base de datos (o ajústalo a tu configuración):
 
    ```sql
-  CREATE ROLE <tu_usuario_postgres> WITH LOGIN PASSWORD '<tu_contraseña_postgres>';
-  CREATE DATABASE <tu_base_de_datos> OWNER <tu_usuario_postgres>;
+   CREATE ROLE <tu_usuario_postgres> WITH LOGIN PASSWORD '<tu_contraseña_postgres>';
+   CREATE DATABASE <tu_base_de_datos> OWNER <tu_usuario_postgres>;
    ```
 
 ---
