@@ -16,6 +16,7 @@ Este repositorio contiene una API RESTful para una tienda en línea, desarrollad
     - [Clonar el repositorio](#clonar-el-repositorio)
     - [Instalar dependencias](#instalar-dependencias)
     - [Variables de entorno](#variables-de-entorno)
+    - [Configuración de la base de datos](#configuración-de-la-base-de-datos)
   - [Ejecución Local](#ejecución-local)
   - [Seed de Datos](#seed-de-datos)
   - [Tests](#tests)
@@ -97,7 +98,7 @@ npm install
 
 ### Variables de entorno
 
-Crea un archivo `.env` en la raíz con las siguientes variables (usa tus propios valores, no los del ejemplo):
+Crea un archivo `.env` en la raíz con las siguientes variables (usa tus propios valores):
 
 ```dotenv
 PORT=3000
@@ -116,9 +117,15 @@ DB_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${
 JWT_SECRET=<tu_valor_aleatorio_para_JWT>
 ```
 
-\$1CREATE ROLE \<tu\_usuario\_postgres> WITH LOGIN PASSWORD '\<tu\_contraseña\_postgres>';
-CREATE DATABASE \<tu\_base\_de\_datos> OWNER \<tu\_usuario\_postgres>;
-\$3
+### Configuración de la base de datos
+
+1. Asegurarse de tener PostgreSQL corriendo.
+2. Crea la base de datos y el usuario (o ajústalo a tu configuración):
+
+   ```sql
+  CREATE ROLE <tu_usuario_postgres> WITH LOGIN PASSWORD '<tu_contraseña_postgres>';
+  CREATE DATABASE <tu_base_de_datos> OWNER <tu_usuario_postgres>;
+   ```
 
 ---
 
