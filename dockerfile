@@ -1,24 +1,24 @@
 # 1. Imagen base: Node 18 (LTS)
 FROM node:18-alpine
 
-# Actualizar paquetes de Alpine packages para reducir vulnerabilidades
+# 2. Actualizar Alpine y reducir vulnerabilidades
 RUN apk update && apk upgrade --no-cache
 
-# 2. Crear y definir el directorio de trabajo
+# 3. Definir el directorio de trabajo
 WORKDIR /usr/src/app
 
-# 3. Copiar package.json y package-lock.json e instalar dependencias
+# 4. Copiar los archivos de dependencias e instalar
 COPY package*.json ./
 RUN npm ci --omit=dev
 
-# 4. Copiar el resto del código
+# 5. Copiar el resto de la aplicación
 COPY . .
 
-# 5. Exponer el puerto definido en .env (3000)
+# 6. Exponer el puerto en el que escucha la app
 EXPOSE 3000
 
-# 6. Definir la variable de entorno de producción
+# 7. Fijar NODE_ENV a producción
 ENV NODE_ENV=production
 
-# 7. Comando de arranque
+# 8. Comando de arranque
 CMD ["node", "src/index.js"]
