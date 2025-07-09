@@ -211,8 +211,6 @@ Se recomienda desplegar en plataformas como Railway o Render:
 
 ---
 
----
-
 ## Arquitectura
 
 Este proyecto está dividido en dos entornos principales:
