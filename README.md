@@ -23,6 +23,7 @@ Este repositorio contiene una API RESTful para una tienda en línea, desarrollad
   - [Docker \& Docker Compose](#docker--docker-compose)
   - [Documentación con Swagger](#documentación-con-swagger)
   - [Despliegue](#despliegue)
+  - [Arquitectura](#arquitectura)
   - [Licencia](#licencia)
   - [Contacto](#contacto)
 
@@ -191,9 +192,9 @@ docker-compose exec app npm run seed
 
 Una vez la API esté en marcha, abre:
 
-```
-http://localhost:3000/docs
-```
+Local: http://localhost:3000/docs
+
+Producción: https://ecommerce-node-production-ae91.up.railway.app/docs
 
 Podrás ver y probar todos los endpoints de forma interactiva.
 
@@ -207,6 +208,38 @@ Se recomienda desplegar en plataformas como Railway o Render:
 2. Conecta el repositorio en Railway.
 3. Define variables de entorno en el panel de tu servicio.
 4. Railway se encargará de build y deploy automáticos.
+
+---
+
+---
+
+## Arquitectura
+
+Este proyecto está dividido en dos entornos principales:
+
+1. **Desarrollo local**  
+   - **Docker Compose** orquesta dos contenedores:
+     - **app**: tu API Node.js (Express + Sequelize)  
+     - **db**: PostgreSQL  
+   - Comunicación interna: `app:3000` ↔ `db:5432`  
+   - Exposición a tu host:
+     - API → `localhost:3001`  
+     - Base de datos → `localhost:5432`  
+
+2. **Producción (Railway)**  
+   - Railway crea dos servicios:
+     1. **PostgreSQL**: instancia gestionada, expone `DATABASE_URL`  
+     2. **Docker**: construye tu `Dockerfile` y lo despliega  
+   - La variable `DATABASE_URL` se inyecta en el contenedor de la app, que se conecta a la base de datos  
+   - URL pública de la API:  
+     ```
+     https://ecommerce-node-production-ae91.up.railway.app
+     ```
+   - Swagger UI disponible en  
+     ```
+     https://ecommerce-node-production-ae91.up.railway.app/docs
+     ```
+
 
 ---
 
